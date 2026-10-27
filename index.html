@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Birthday Wish for Aarzoo</title>
+<style>
+:root {
+  --site-primary: #8E2438;
+  --site-on-primary: #FFFFFF;
+  --site-secondary: #F2D5B6;
+  --site-on-secondary: #48212B;
+  --site-background: #FFF7F1;
+  --site-on-background: #48212B;
+  --site-font-body: "Trebuchet MS", Arial, sans-serif;
+  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--site-font-body);
+  color: var(--site-on-background);
+  background: var(--site-background);
+}
+#app {
+  min-height: 100vh;
+  width: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  background-color: light-dark(var(--site-background), #21161A);
+  color: light-dark(var(--site-on-background), #FFF0E8);
+  position: relative;
+}
+.hero {
+  min-height: 92svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(28px * var(--site-spacing-scale)) 20px 55px;
+  color: #fff8f0;
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(255,224,180,.24), transparent 44%),
+    linear-gradient(155deg, #4b1727 0%, #8e2438 52%, #bd5a57 100%);
+  position: relative;
+}
+.hero:before, .hero:after {
+  content: "✦  ·  ✧  ·  ✦";
+  position: absolute;
+  color: #f8d9a8;
+  opacity: calc(.65 * var(--site-decoration-opacity));
+  letter-spacing: 13px;
+  font-size: 18px;
+}
+.hero:before { top: 28px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.hero:after { bottom: 27px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.glow {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: #f7c77e;
+  opacity: calc(.09 * var(--site-decoration-opacity));
+  filter: blur(40px);
+  top: 22%;
+  left: calc(50% - 115px);
+  pointer-events: none;
+}
+.hero-content { max-width: 660px; position: relative; z-index: 1; }
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 11px;
+  color: #f8d9a8;
+  margin-bottom: 24px;
+}
+h1, h2, h3 { font-family: var(--site-font-heading); font-weight: 400; }
+h1 {
+  font-size: clamp(3rem, 12vw, 6.2rem);
+  line-height: 1;
+  margin: 0 0 20px;
+  letter-spacing: -2px;
+}
+h1 span { color: #f8d9a8; font-style: italic; }
+.hero p { font-size: 16px; line-height: 1.8; max-width: 430px; margin: 0 auto 27px; color: #ffebe2; }
+button {
+  cursor: pointer;
+  border: 0;
+  font: inherit;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+button:hover { transform: translateY(-2px); }
+button:focus-visible { outline: 3px solid #e4a75c; outline-offset: 4px; }
+.gold-btn {
+  background: #f2d5b6;
+  color: #48212b;
+  padding: 14px 23px;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 8px 25px #260b1840;
+}
+.scroll-hint { margin-top: 35px; color: #f8d9a8; font-size: 12px; letter-spacing: 2px; }
+main { max-width: 880px; margin: 0 auto; padding: 25px 18px 70px; }
+.section { padding: 48px 0; text-align: center; }
+.kicker { color: #a85a51; text-transform: uppercase; font-size: 11px; letter-spacing: 3px; font-weight: 700; }
+h2 { font-size: clamp(2rem, 7vw, 3.2rem); margin: 13px 0 18px; color: #8e2438; }
+.intro { max-width: 580px; line-height: 1.85; margin: 0 auto; color: #79545a; }
+.letter {
+  background: #fffdf8;
+  border: 1px solid #e9cfb7;
+  box-shadow: 0 18px 55px #6d2b2812;
+  border-radius: calc(22px * var(--site-radius-scale));
+  padding: clamp(24px, 6vw, 48px);
+  max-width: 650px;
+  margin: 28px auto 0;
+  position: relative;
+  text-align: left;
+}
+.letter:before { content: "❦"; display: block; text-align: center; color: #b66a59; font-size: 29px; margin-bottom: 14px; }
+.letter p { line-height: 1.95; color: #68474c; font-size: 15px; }
+.signature { font-family: var(--site-font-heading); font-style: italic; font-size: 23px; color: #8e2438; text-align: right; margin-top: 24px; }
+.memories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; margin-top: 28px; }
+.memory {
+  min-height: 155px;
+  border-radius: calc(16px * var(--site-radius-scale));
+  padding: 20px 12px;
+  background: linear-gradient(145deg, #f7e3d1, #f0c8bf);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  border: 1px solid #edc8b8;
+}
+.memory:nth-child(2) { background: linear-gradient(145deg, #f5e5c2, #e6b6aa); }
+.memory:nth-child(3) { background: linear-gradient(145deg, #eed5de, #f7e5d0); }
+.memory .emoji { font-size: 31px; }
+.memory strong { font-family: var(--site-font-heading); font-size: 17px; font-weight: 400; }
+.memory small { font-size: 11px; color: #79545a; line-height: 1.5; }
+.surprise {
+  background: linear-gradient(145deg, #4b1727, #8e2438);
+  color: #fff6eb;
+  border-radius: calc(24px * var(--site-radius-scale));
+  padding: 36px 22px;
+  margin-top: 25px;
+}
+.surprise h2 { color: #f8d9a8; }
+.surprise p { line-height: 1.8; color: #ffebe2; }
+.reveal {
+  background: #f2d5b6; color: #48212b; padding: 13px 20px; border-radius: 999px; font-weight: 700; margin-top: 8px;
+}
+.hidden-note { display: none; max-width: 500px; margin: 22px auto 0; padding: 20px; border: 1px solid #f2d5b6; border-radius: 16px; animation: rise .6s ease both; }
+.hidden-note.show { display: block; }
+.final-question { font-family: var(--site-font-heading); font-size: clamp(1.5rem, 6vw, 2.2rem); color: #f8d9a8; margin: 0 0 14px; }
+footer { text-align: center; padding: 28px 15px 38px; color: #9a6c6c; font-size: 12px; }
+.heart { display: inline-block; color: #c15a66; animation: heartbeat 1.4s infinite; }
+.float-heart { position: fixed; z-index: 10; pointer-events: none; animation: floatUp 2.4s ease-out forwards; opacity: .9; }
+@keyframes heartbeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+@keyframes floatUp { from { transform: translateY(0) rotate(0deg); opacity: .95; } to { transform: translateY(-95vh) rotate(30deg); opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 560px) {
+  .hero { min-height: 88svh; }
+  .memories { grid-template-columns: 1fr; }
+  .memory { min-height: 115px; }
+  .section { padding: 35px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<div id="app" data-sites-preview-theme="custom">
+  <section class="hero" id="top">
+    <div class="glow"></div>
+    <div class="hero-content">
+      <div class="eyebrow">A little surprise, made with love</div>
+      <h1>Happy Birthday,<br><span>Aarzoo</span></h1>
+      <p>For someone who makes ordinary days feel a little more beautiful. Today, this little corner of the internet is all yours. ✨</p>
+      <button class="gold-btn" id="startBtn">Open your surprise ♡</button>
+      <div class="scroll-hint">MADE JUST FOR YOU · ↓</div>
+    </div>
+  </section>
+  <main>
+    <section class="section" id="letter">
+      <div class="kicker">A note from the heart</div>
+      <h2>A little birthday letter</h2>
+      <p class="intro">Some wishes are too special to fit into one simple message, so here's a little page just for you.</p>
+      <article class="letter">
+        <p>Dear Aarzoo,</p>
+        <p>On your special day, I just want to wish you all the happiness, peace, laughter, and beautiful surprises life can bring. May this new year of your life be filled with moments that make you smile for no reason and people who remind you how special you are.</p>
+        <p>Tumhari smile hamesha aise hi bani rahe. Happy Birthday! 💖</p>
+        <p>I hope your dreams come closer, your worries feel lighter, and every little thing today reminds you that you deserve lots of happiness. Keep being your wonderful self.</p>
+        <p>Have the loveliest birthday ever. 🌹</p>
+        <div class="signature">With warm wishes,<br>Imran Ansari ♡</div>
+      </article>
+    </section>
+    <section class="section" id="memories">
+      <div class="kicker">Little things, big smiles</div>
+      <h2>A tiny memory gallery</h2>
+      <p class="intro">A few little reminders for a day that's all about you. You can replace these cards with your favourite photos later.</p>
+      <div class="memories">
+        <div class="memory"><div class="emoji">🌹</div><strong>A little sweetness</strong><small>May your days bloom<br>with lovely surprises.</small></div>
+        <div class="memory"><div class="emoji">📸</div><strong>Moments to keep</strong><small>May you collect memories<br>worth smiling about.</small></div>
+        <div class="memory"><div class="emoji">✨</div><strong>Dream big</strong><small>May beautiful things<br>find their way to you.</small></div>
+      </div>
+    </section>
+    <section class="section" id="final">
+      <div class="kicker">One last little surprise</div>
+      <h2>Before you go…</h2>
+      <p class="intro">There's one more message waiting for you. Ready? 💌</p>
+      <div class="surprise">
+        <div style="font-size:38px;margin-bottom:10px">🎁</div>
+        <p class="final-question">Aarzoo, this wish is just for you…</p>
+        <p>Tap below to unwrap your final surprise.</p>
+        <button class="reveal" id="revealBtn">Unwrap my surprise 💗</button>
+        <div class="hidden-note" id="hiddenNote">
+          <div style="font-size:34px;margin-bottom:10px">💖</div>
+          <p class="final-question">You deserve all the happiness.</p>
+          <p>And one honest little confession: making you smile would be a pretty lovely thing. No pressure, just a birthday wish from Imran, with a little extra warmth. 🌷</p>
+          <p>Happy Birthday once again, Aarzoo Khan! 🎂</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>Made with <span class="heart">♥</span> by Imran Ansari · For Aarzoo Khan</footer>
+</div>
+<script>
+const startBtn = document.getElementById('startBtn');
+startBtn.addEventListener('click', () => {
+  document.getElementById('letter').scrollIntoView({behavior:'smooth'});
+  burstHearts(16);
+});
+document.getElementById('revealBtn').addEventListener('click', function() {
+  const note = document.getElementById('hiddenNote');
+  note.classList.toggle('show');
+  this.textContent = note.classList.contains('show') ? 'Surprise opened ♡' : 'Unwrap my surprise 💗';
+  if (note.classList.contains('show')) burstHearts(24);
+});
+function burstHearts(count) {
+  const symbols = ['♥','♡','✦','💗'];
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('span');
+    el.className = 'float-heart';
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = (5 + Math.random() * 90) + 'vw';
+    el.style.top = (58 + Math.random() * 35) + 'vh';
+    el.style.fontSize = (14 + Math.random() * 18) + 'px';
+    el.style.color = ['#bd5a57','#e3b66d','#8e2438','#d48ba0'][Math.floor(Math.random()*4)];
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2500);
+  }
+}
+</script>
+</body>
+</html>
